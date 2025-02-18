@@ -4,6 +4,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const SELECT_BOOK = "SELECT_BOOK";
 export const SET_USER = "SET_USER";
+export const SET_BOOKS = "SET_BOOKS";
 
 // ACTION CREATORS  ==> funzioni che ritornano l'oggetto (action)
 
@@ -14,3 +15,21 @@ export const addToCartAction = (book) => ({ type: ADD_TO_CART, payload: book });
 export const removeFromCartAction = (i) => ({ type: REMOVE_FROM_CART, payload: i });
 export const selectBookAction = (book) => ({ type: SELECT_BOOK, payload: book });
 export const setUserAction = (value) => ({ type: SET_USER, payload: value });
+
+export const getBooksAction = () => {
+  return async (dispatch, getState) => {
+    console.log("getState()", getState());
+    try {
+      let resp = await fetch("https://striveschool-api.herokuapp.com/food-books");
+      if (resp.ok) {
+        let fetchedBooks = await resp.json();
+        console.log(fetchedBooks);
+        dispatch({ type: SET_BOOKS, payload: fetchedBooks });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

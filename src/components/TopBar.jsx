@@ -1,10 +1,18 @@
 import { Col, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartIndicator from "./CartIndicator";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getBooksAction } from "../redux/actions";
+import { useEffect } from "react";
 
 const TopBar = () => {
   const bookSelected = useSelector((state) => state.bookSelected.content);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooksAction());
+  }, []);
+
   return (
     <Row className="gx-0">
       <Col sm={12} className="text-center background-div">
