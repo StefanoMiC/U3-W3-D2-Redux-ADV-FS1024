@@ -12,8 +12,7 @@ const initialState = {
   },
   user: {
     content: ""
-  },
-  stefano: true
+  }
 };
 
 // OGNI VOLTA CHE VIENE RISVEGLIATO quindi riceve lo stato nella condizione attuale come primo parametro

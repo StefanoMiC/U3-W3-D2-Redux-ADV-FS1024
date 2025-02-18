@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { setUserAction } from "../redux/actions";
 
 const CartIndicator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -42,7 +43,8 @@ const CartIndicator = () => {
             variant="info"
             className="ms-1 flex-shrink-0"
             onClick={() => {
-              dispatch({ type: "SET_USER", payload: inputValue });
+              // dispatch({ type: "SET_USER", payload: inputValue });
+              dispatch(setUserAction(inputValue));
             }}
           >
             Log In
