@@ -10,6 +10,14 @@ const TopBar = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // la funzione getBooksAction contiene il return di una funzione,
+    // questa funzione ritornata può essere anche asincrona.
+    // verrà presa in carico da thunk (un middleware che gestisce operazioni intermedie)
+    // prima di ritornare nel flusso classico delle operazioni Redux => dispatch che risveglia un reducer e gli passa l'action
+
+    // si risolverà prima la fetch e sempre dentro all'action creator verrà chiamata una dispatch interna
+    // quello sarà il momento in cui torneremo nel flusso delle normali operazioni redux
+    // ci arriverà l'oggetto action in questo punto che verrà raccolto dalla dispatch ecc.
     dispatch(getBooksAction());
   }, []);
 

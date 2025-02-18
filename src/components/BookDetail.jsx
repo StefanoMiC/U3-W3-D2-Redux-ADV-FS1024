@@ -1,6 +1,6 @@
 import { Col, Row, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_CART, addToCartAction } from "../redux/actions";
+import { ADD_TO_CART, addToCartAction, addToCartActionWithThunk } from "../redux/actions";
 
 const BookDetail = () =>
   // { bookSelected }
@@ -42,7 +42,11 @@ const BookDetail = () =>
                       // la action deve obbligatoriamente avere una proprietà type (che coinciderà con uno dei case dello switch del reducer)
                       // e opzionalmente un payload
                       // dispatch({ type: ADD_TO_CART, payload: bookSelected });
-                      dispatch(addToCartAction(bookSelected));
+
+                      // dispatch(addToCartAction(bookSelected));
+
+                      // inseriamo condizionalmente un libro nel carrello (SOLO SE NON GIA' PRESENTE, vedi logica interna)
+                      dispatch(addToCartActionWithThunk(bookSelected));
                     }}
                   >
                     ADD TO CART
